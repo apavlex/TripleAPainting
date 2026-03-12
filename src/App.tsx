@@ -22,7 +22,7 @@ import {
 import { motion } from 'motion/react';
 
 const IMAGES = {
-  house: "https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&q=80&w=2000",
+  house: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2000",
   interior: "https://lh3.googleusercontent.com/aida-public/AB6AXuAKyHQN0BmacSEb0XkCgYOdj0XL-qTWQsQ4JDIqRVEODVXOVK-2XnWb77a2L3Oy-PpM8PWltTKxPUIkFXAT-t2t2FQgL6STUDI82zLVVBxG9w_DLk2o7Z8IPxViYMmy7u4AKr2hpRZ7SbiSqjRfl3yuY3blZSLVuE54iyNqpvxEXs1yEMbYtyyN1gOJDMffnXhuoneBFXb0iAXQSDwQa8mtQi_3PscKL3Tx6gOWoVwhwSs4AvLsjI5Cz7I0TlGCMuVzX5gqHIjPgzQ",
   exterior: "https://lh3.googleusercontent.com/aida-public/AB6AXuCoMNommoXp2UZGHvw275loJHY6pqDHsmMK5e7FVSLy8WOPw7tLxaFxd8SA7EUaUHoNE7NtccfDE5SOUPJcAMDZBTPq5F1aEw27Uhi_DLAKIOr3fMFHZ7ZUnDo-n372-9RofmXM0l5F-0S8Dw4GhN0W9SFqhNrzy8lbuiAzH390HNS6Rkk3ZUrTB14IXi4vFM19GA-8QoG1V52kfASc76y81bMqfQZu-XT0pnHiLdj8s8PeB48TWYJQYpAim_h7RbSrVQGPB4cTQ38",
   cabinet: "https://lh3.googleusercontent.com/aida-public/AB6AXuBPmXiG18fMUT23Fka48JPDmi6rfv8skQx9G2_uO3TjAZa3cg5mc3pXeIOHrhhq1iV9om6YPkpPPMiqGg-bG2xXeuCMTl4TwABNsG1Dv8Bx6Q9DDWs01fSBh5Rym_eAUQ0c6MenF6tE0uk_pqWgZjeBo7DSiHnxGAZ9Mua7lAliD9q6MwRbl_vHitrqPgmlp6l9uYEpv2NHG9kr4QOjiYLsoLu1j4l8sYLxlJrj47_tlbY2ZbemC-7QAldwAQ14aIHXxPKR5yG2gvY"
@@ -48,19 +48,28 @@ export default function App() {
               {item}
             </a>
           ))}
-          <button className="bg-accent text-slate-900 px-5 py-2.5 rounded-lg text-sm font-bold shadow-lg hover:brightness-110 transition-all">
-            Get a Free Estimate
-          </button>
+          <div className="flex items-center gap-4 ml-4 pl-4 border-l border-slate-200">
+            <a href="tel:3609102546" className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
+              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <Phone className="w-4 h-4" />
+              </div>
+              <span className="font-black text-lg">(360) 910-2546</span>
+            </a>
+            <a href="#quote" className="bg-accent text-slate-900 px-5 py-2.5 rounded-lg text-sm font-bold shadow-lg hover:brightness-110 transition-all">
+              Free Estimate
+            </a>
+          </div>
         </nav>
         <button className="md:hidden text-slate-900">
           <Menu className="w-6 h-6" />
         </button>
       </header>
 
-      <main className="flex-1">
+      <main className="flex-1 wall-texture-overlay">
         {/* Hero Section */}
-        <section className="bg-primary text-white py-16 lg:py-24 px-6 lg:px-20 overflow-hidden">
-          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <section className="bg-primary text-white py-16 lg:py-24 px-6 lg:px-20 overflow-hidden relative">
+          <div className="absolute inset-0 opacity-10 wall-texture-bg pointer-events-none"></div>
+          <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -79,12 +88,13 @@ export default function App() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">
-                <button className="bg-accent text-slate-900 px-8 py-4 rounded-lg text-lg font-black shadow-xl hover:scale-105 transition-transform">
-                  Send Quote Request
-                </button>
-                <button className="bg-white/10 border-2 border-white/30 px-8 py-4 rounded-lg text-lg font-bold hover:bg-white/20 transition-all">
-                  View Our Portfolio
-                </button>
+                <a href="tel:3609102546" className="bg-accent text-slate-900 px-8 py-4 rounded-lg text-lg font-black shadow-xl hover:scale-105 transition-transform flex items-center gap-3">
+                  <Phone className="w-6 h-6" />
+                  Call (360) 910-2546
+                </a>
+                <a href="#quote" className="bg-white/10 border-2 border-white/30 px-8 py-4 rounded-lg text-lg font-bold hover:bg-white/20 transition-all flex items-center justify-center">
+                  Get a Free Quote
+                </a>
               </div>
             </motion.div>
             <motion.div 
@@ -124,8 +134,9 @@ export default function App() {
         </section>
 
         {/* Combined Stats & Trust Section - Compact & Focus on Trust */}
-        <section className="max-w-7xl mx-auto px-6 lg:px-20 -mt-8 mb-16 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <section className="max-w-7xl mx-auto px-6 lg:px-20 -mt-8 mb-16 relative z-10 overflow-hidden rounded-2xl">
+          <div className="absolute inset-0 opacity-5 wall-texture-bg pointer-events-none bg-white"></div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 relative z-10">
             {[
               { 
                 icon: <Award className="w-5 h-5" />, 
@@ -185,7 +196,9 @@ export default function App() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="max-w-7xl mx-auto px-6 lg:px-20 py-16">
+        <section id="services" className="max-w-7xl mx-auto px-6 lg:px-20 py-16 relative">
+          <div className="absolute inset-0 opacity-5 wall-texture-bg pointer-events-none"></div>
+          <div className="relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Residential & Commercial Services</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
@@ -212,11 +225,13 @@ export default function App() {
               />
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Portfolio Section */}
-        <section id="portfolio" className="bg-slate-50 py-16 px-6 lg:px-20">
-          <div className="max-w-7xl mx-auto">
+        <section id="portfolio" className="bg-slate-50 py-16 px-6 lg:px-20 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-10 wall-texture-bg pointer-events-none"></div>
+          <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">Our Recent Work</h2>
               <p className="text-slate-600 max-w-2xl mx-auto">
@@ -234,11 +249,6 @@ export default function App() {
                   />
                 </div>
               ))}
-            </div>
-            <div className="mt-12 text-center">
-              <button className="border-2 border-primary text-primary px-8 py-3 rounded-lg font-bold hover:bg-primary hover:text-white transition-all">
-                View Full Portfolio
-              </button>
             </div>
           </div>
         </section>
@@ -268,7 +278,7 @@ export default function App() {
         </section>
 
         {/* Quote Form Section */}
-        <section className="bg-slate-100 py-20 px-6 lg:px-20">
+        <section id="quote" className="bg-slate-100 py-20 px-6 lg:px-20">
           <div className="max-w-5xl mx-auto bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col lg:flex-row border border-slate-200">
             <div className="lg:w-1/2 p-10 lg:p-16">
               <form className="flex flex-col gap-5">
@@ -283,7 +293,7 @@ export default function App() {
                   </div>
                   <div className="flex flex-col gap-1.5">
                     <label className="text-sm font-bold text-slate-700">Phone Number</label>
-                    <input type="tel" placeholder="(555) 000-0000" className="w-full h-12 rounded-lg bg-slate-50 border border-slate-200 px-4 focus:ring-2 focus:ring-primary outline-none" />
+                    <input type="tel" placeholder="(360) 910-2546" className="w-full h-12 rounded-lg bg-slate-50 border border-slate-200 px-4 focus:ring-2 focus:ring-primary outline-none" />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
@@ -314,10 +324,10 @@ export default function App() {
                   <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
                     <Phone className="w-5 h-5 text-accent" />
                   </div>
-                  <div>
+                  <a href="tel:3609102546" className="hover:text-accent transition-colors">
                     <p className="text-sm opacity-70">Call Us Directly</p>
-                    <p className="text-xl font-bold">(555) 123-4567</p>
-                  </div>
+                    <p className="text-xl font-bold">(360) 910-2546</p>
+                  </a>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
@@ -367,6 +377,26 @@ export default function App() {
 
       {/* Footer */}
       <footer className="bg-slate-900 text-white py-16 px-6 lg:px-20">
+        {/* Floating Mobile Call Button */}
+        <div className="md:hidden fixed bottom-6 right-6 z-50">
+          <motion.div
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="relative"
+          >
+            <motion.a 
+              initial={{ scale: 0, rotate: -45 }}
+              animate={{ scale: 1, rotate: 0 }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              href="tel:3609102546" 
+              className="bg-accent text-slate-900 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform border-4 border-white relative z-10"
+            >
+              <Phone className="w-8 h-8" />
+            </motion.a>
+            <div className="absolute inset-0 bg-accent rounded-full animate-ping opacity-20"></div>
+          </motion.div>
+        </div>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-3 text-white">
@@ -447,23 +477,27 @@ function ServiceCard({ image, title, desc, horizontal = false }: { image: string
 
 function TestimonialCard({ text, author, location, initials }: { text: string, author: string, location: string, initials: string }) {
   return (
-    <div className="p-10 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm">
-      <div className="flex text-accent mb-6 gap-0.5">
-        {[1, 2, 3, 4, 5].map((i) => (
-          <Star key={i} className="w-5 h-5 fill-accent" />
-        ))}
-      </div>
-      <p className="text-lg text-slate-600 italic mb-8">"{text}"</p>
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white text-lg font-bold">
-          {initials}
+    <div className="p-10 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm relative overflow-hidden">
+      <div className="absolute inset-0 opacity-5 wall-texture-bg pointer-events-none"></div>
+      <div className="relative z-10">
+        <div className="flex text-accent mb-6 gap-0.5">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <Star key={i} className="w-5 h-5 fill-accent" />
+          ))}
         </div>
-        <div>
-          <p className="font-bold text-slate-900">{author}</p>
-          <p className="text-slate-500 text-sm">{location}</p>
+        <p className="text-lg text-slate-600 italic mb-8">"{text}"</p>
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white text-lg font-bold">
+            {initials}
+          </div>
+          <div>
+            <p className="font-bold text-slate-900">{author}</p>
+            <p className="text-slate-500 text-sm">{location}</p>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
 

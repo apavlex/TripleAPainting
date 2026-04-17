@@ -24,7 +24,7 @@ import {
   X,
   ZoomIn
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 
 const IMAGES = {
   house: "/hero-painting-masked.png",

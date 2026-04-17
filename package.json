@@ -3,11 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "start": "node server.js",
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
-    "postbuild": "node scripts/duplicate-build-output.mjs",
+    "build": "vite build && node scripts/duplicate-build-output.mjs",
     "preview": "vite preview",
     "clean": "rm -rf dist tripleapainting",
     "lint": "tsc --noEmit"

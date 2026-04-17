@@ -1,4 +1,4 @@
-# Build uses npm so postbuild copies ./dist → ./tripleapainting. Publish may be ./dist or ./tripleapainting.
+# Do not set Build Command to `vite build` alone — `npm run build` also copies dist → tripleapainting.
 services:
   - type: web
     name: TripleAPainting

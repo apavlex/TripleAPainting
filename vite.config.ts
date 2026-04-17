@@ -8,6 +8,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(() => {
   return {
+    build: {
+      // Matches Render static-site publish directory name (avoids post-build copy).
+      outDir: 'tripleapainting',
+      emptyOutDir: true,
+    },
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

@@ -1,7 +1,7 @@
-# Use `npm run build` (not `vite build` alone) so npm runs `postbuild` and creates ./tripleapainting.
+# Vite outDir is ./tripleapainting (same as typical Render publish folder for this project).
 services:
   - type: web
     name: TripleAPainting
     runtime: static
     buildCommand: npm ci && npm run build
-    staticPublishPath: ./dist
+    staticPublishPath: ./tripleapainting

@@ -1,3 +1,4 @@
+# Use `npm run build` (not `vite build` alone) so npm runs `postbuild` and creates ./tripleapainting.
 services:
   - type: web
     name: TripleAPainting

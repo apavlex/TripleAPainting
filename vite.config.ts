@@ -1,24 +1,37 @@
 import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 import type {Plugin} from 'vite';
 import {defineConfig} from 'vite';
 
-/** Copies dist → tripleapainting after production build (Render publish-dir compatibility). Runs on any `vite build`, not only `npm run build`. */
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+/** Copies build.outDir → ./tripleapainting (Render publish-dir compatibility). Uses configResolved paths so CI/bundled config is reliable. */
 function mirrorRenderPublishDir(): Plugin {
+  let srcDir = '';
+  let destDir = '';
   return {
     name: 'mirror-render-publish-dir',
     apply: 'build',
+    configResolved(config) {
+      const root = config.root;
+      srcDir = path.resolve(root, config.build.outDir);
+      destDir = path.join(root, 'tripleapainting');
+    },
     closeBundle() {
-      const src = path.resolve(__dirname, 'dist');
-      const dest = path.resolve(__dirname, 'tripleapainting');
-      if (!fs.existsSync(src)) {
+      if (!srcDir) {
+        console.warn('mirror-render-publish-dir: skip (outDir not resolved)');
         return;
       }
-      fs.rmSync(dest, {recursive: true, force: true});
-      fs.cpSync(src, dest, {recursive: true});
-      console.log('mirror-render-publish-dir: copied dist/ → tripleapainting/');
+      if (!fs.existsSync(srcDir)) {
+        console.warn('mirror-render-publish-dir: skip (missing):', srcDir);
+        return;
+      }
+      fs.rmSync(destDir, {recursive: true, force: true});
+      fs.cpSync(srcDir, destDir, {recursive: true});
+      console.log(`mirror-render-publish-dir: copied ${srcDir} → ${destDir}`);
     },
   };
 }

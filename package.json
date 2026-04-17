@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && node scripts/mirror-render-publish-dir.mjs",
     "preview": "vite preview",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist tripleapainting",
     "lint": "tsc --noEmit"
   },
   "dependencies": {

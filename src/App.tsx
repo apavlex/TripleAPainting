@@ -9,15 +9,12 @@ import {
   CheckCircle2, 
   ArrowRight, 
   Phone, 
-  Clock, 
   Mail, 
-  Share2, 
   Menu,
   ShieldCheck,
   ChevronRight,
   ChevronLeft,
   Award,
-  Building2,
   Handshake,
   Home,
   Palette,
@@ -25,6 +22,8 @@ import {
   ZoomIn
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+
+const SITE_URL = (import.meta.env.VITE_SITE_URL || 'https://tripleapainting.com').replace(/\/$/, '');
 
 const IMAGES = {
   house: "/hero-painting-masked.png",
@@ -48,20 +47,57 @@ const IMAGES = {
   ]
 };
 
-
-
+function SeoJsonLd() {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'HousePainter',
+    name: 'Triple A Painting',
+    description:
+      'Family-owned residential and commercial painting company serving the Vancouver–Portland metro and Pacific Northwest since 2005. Licensed, insured, and bonded.',
+    url: `${SITE_URL}/`,
+    telephone: '+1-360-910-2546',
+    email: 'info@triplea.com',
+    image: [`${SITE_URL}/logo.png`, `${SITE_URL}/hero-painting-masked.png`],
+    logo: `${SITE_URL}/logo.png`,
+    foundingDate: '2005',
+    slogan: 'Expert residential and commercial painting with care since 2005.',
+    areaServed: [
+      {'@type': 'City', name: 'Vancouver', containedInPlace: {'@type': 'State', name: 'Washington', identifier: 'US-WA'}},
+      {'@type': 'City', name: 'Portland', containedInPlace: {'@type': 'State', name: 'Oregon', identifier: 'US-OR'}},
+      {'@type': 'State', name: 'Washington'},
+      {'@type': 'State', name: 'Oregon'},
+    ],
+    knowsAbout: [
+      'Interior painting',
+      'Exterior painting',
+      'Cabinet refinishing',
+      'Deck staining',
+      'Fence painting',
+      'Commercial painting',
+      'Color consultation',
+    ],
+    priceRange: '$$',
+  };
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{__html: JSON.stringify(schema)}}
+    />
+  );
+}
 
 export default function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans">
+      <SeoJsonLd />
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-slate-200 px-6 lg:px-20 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3 text-primary">
-          <div className="w-48">
-            <img src="/logo.png" alt="Triple A Painting Logo" className="w-full h-auto object-contain" />
-          </div>
+          <a href="/" className="w-48 block shrink-0" aria-label="Triple A Painting — home">
+            <img src="/logo.png" alt="Triple A Painting — Vancouver and Portland painters" className="w-full h-auto object-contain" />
+          </a>
         </div>
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8" aria-label="Primary">
           {['Services', 'Portfolio', 'About Us', 'Reviews'].map((item) => (
             <a key={item} href={`#${item.toLowerCase().replace(' ', '-')}`} className="text-slate-600 text-sm font-semibold hover:text-primary transition-colors">
               {item}
@@ -124,7 +160,7 @@ export default function App() {
             >
               <img 
                 src={IMAGES.house} 
-                alt="Modern House" 
+                alt="Professional home exterior painting in the Vancouver and Portland metro area by Triple A Painting" 
                 className="w-full aspect-[4/3] object-cover rounded-2xl shadow-2xl border-4 border-white/10"
                 referrerPolicy="no-referrer"
               />
@@ -205,7 +241,7 @@ export default function App() {
           <div className="absolute inset-0 opacity-5 wall-texture-bg pointer-events-none"></div>
           <div className="max-w-7xl mx-auto relative z-10">
             <div className="text-center mb-16">
-              <h1 className="text-sm font-black text-primary uppercase tracking-[0.3em] mb-4">Our Specializations</h1>
+              <p className="text-sm font-black text-primary uppercase tracking-[0.3em] mb-4">Our Specializations</p>
               <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Expert Painting Services</h2>
               <p className="text-slate-600 max-w-2xl mx-auto text-xl leading-relaxed">
                 Comprehensive interior and exterior solutions tailored for the Pacific Northwest. We combine elite craftsmanship with premium materials.
@@ -384,7 +420,9 @@ export default function App() {
                     </div>
                     <div>
                       <p className="text-sm font-bold opacity-60 uppercase tracking-widest">Email Us</p>
-                      <p className="text-2xl font-black tracking-tight">info@triplea.com</p>
+                      <a href="mailto:info@triplea.com" className="text-2xl font-black tracking-tight hover:text-accent transition-colors block">
+                        info@triplea.com
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -433,7 +471,7 @@ export default function App() {
               <div className="rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white relative z-10 transition-transform duration-500 group-hover:scale-[1.02]">
                 <img 
                   src={IMAGES.cabinet} 
-                  alt="Craftsmanship" 
+                  alt="Cabinet refinishing and interior craftsmanship by Triple A Painting" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -467,17 +505,17 @@ export default function App() {
         </div>
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16 lg:gap-24">
           <div className="flex flex-col gap-8 md:col-span-1">
-            <div className="w-48 mb-2">
-              <img src="/logo.png" alt="Triple A Painting Logo" className="w-full h-auto object-contain" />
-            </div>
+            <a href="/" className="w-48 mb-2 block" aria-label="Triple A Painting home">
+              <img src="/logo.png" alt="Triple A Painting — licensed painters Vancouver WA and Portland OR" className="w-full h-auto object-contain" />
+            </a>
             <p className="text-slate-400 text-base leading-relaxed font-medium">
               Bringing color and care to PNW homes and families since 2005. Your home, treated like our own.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-accent hover:text-slate-900 transition-all shadow-lg">
-                <Share2 className="w-6 h-6" />
+              <a href="tel:3609102546" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-accent hover:text-slate-900 transition-all shadow-lg" aria-label="Call Triple A Painting">
+                <Phone className="w-6 h-6" />
               </a>
-              <a href="#" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-accent hover:text-slate-900 transition-all shadow-lg">
+              <a href="mailto:info@triplea.com" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-accent hover:text-slate-900 transition-all shadow-lg" aria-label="Email Triple A Painting">
                 <Mail className="w-6 h-6" />
               </a>
             </div>
@@ -485,19 +523,19 @@ export default function App() {
           <div>
             <h4 className="font-black mb-8 text-accent uppercase tracking-widest text-sm">Our Services</h4>
             <ul className="flex flex-col gap-5 text-base text-slate-400 font-medium">
-              <li><a href="#" className="hover:text-white transition-colors">Residential Interior</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Exterior Protection</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Cabinet Refinishing</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Light Commercial</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">Residential Interior</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">Exterior Protection</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">Cabinet Refinishing</a></li>
+              <li><a href="#services" className="hover:text-white transition-colors">Light Commercial</a></li>
             </ul>
           </div>
           <div>
             <h4 className="font-black mb-8 text-accent uppercase tracking-widest text-sm">Platform</h4>
             <ul className="flex flex-col gap-5 text-base text-slate-400 font-medium">
-              <li><a href="#" className="hover:text-white transition-colors">Our Legacy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Work Gallery</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Trust Reviews</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Get Started</a></li>
+              <li><a href="#about-us" className="hover:text-white transition-colors">Our Legacy</a></li>
+              <li><a href="#portfolio" className="hover:text-white transition-colors">Work Gallery</a></li>
+              <li><a href="#reviews" className="hover:text-white transition-colors">Trust Reviews</a></li>
+              <li><a href="#quote" className="hover:text-white transition-colors">Get Started</a></li>
             </ul>
           </div>
           <div>
@@ -512,10 +550,10 @@ export default function App() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-24 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-sm text-slate-500 font-medium italic">© 2024 Triple A Painting Inc. Caring for your home since 2005.</p>
+          <p className="text-sm text-slate-500 font-medium italic">© 2026 Triple A Painting Inc. Caring for your home since 2005.</p>
           <div className="flex gap-8 text-xs font-black uppercase text-slate-500 tracking-widest">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#quote" className="hover:text-white transition-colors">Contact</a>
+            <a href="tel:3609102546" className="hover:text-white transition-colors">Call Us</a>
           </div>
         </div>
       </footer>
@@ -549,7 +587,7 @@ function PortfolioSection() {
             >
               <img 
                 src={img} 
-                alt={`Project ${idx + 1}`} 
+                alt={`Triple A Painting portfolio — completed residential or commercial painting project ${idx + 1}, Vancouver WA or Portland OR area`} 
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
               />
               <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -640,6 +678,7 @@ function PortfolioLightbox({ images, initialIndex, onClose }: { images: string[]
             <motion.img
               key={currentIndex}
               src={images[currentIndex]}
+              alt={`Triple A Painting portfolio image ${currentIndex + 1} — Vancouver and Portland area painting contractor`}
               custom={direction}
               variants={slideVariants}
               initial="enter"
@@ -687,7 +726,7 @@ function ServiceCategoryCard({ icon, title, image, services, accentColor, bgColo
       
       <div className="px-8 pb-8 flex-1 flex flex-col">
         <div className="aspect-[16/11] rounded-[2rem] overflow-hidden mb-8 border border-slate-100 shadow-lg relative group">
-          <img src={image} alt={title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+          <img src={image} alt={`${title} painting services by Triple A Painting — Vancouver WA and Portland OR`} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
         </div>
 

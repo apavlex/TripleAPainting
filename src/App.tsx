@@ -56,7 +56,7 @@ function SeoJsonLd() {
       'Family-owned residential and commercial painting company serving the Vancouver–Portland metro and Pacific Northwest since 2005. Licensed, insured, and bonded.',
     url: `${SITE_URL}/`,
     telephone: '+1-360-910-2546',
-    email: 'info@triplea.com',
+    email: 'tripleapainting@yahoo.com',
     image: [`${SITE_URL}/logo.png`, `${SITE_URL}/hero-painting-masked.png`],
     logo: `${SITE_URL}/logo.png`,
     foundingDate: '2005',
@@ -110,7 +110,7 @@ export default function App() {
               </div>
               <span className="font-black text-lg">(360) 910-2546</span>
             </a>
-            <a href="#quote" className="bg-accent text-slate-900 px-5 py-2.5 rounded-lg text-sm font-bold shadow-lg hover:brightness-110 transition-all">
+            <a href="#quote" className="bg-accent !text-white px-5 py-2.5 rounded-lg text-sm font-bold shadow-lg hover:brightness-110 transition-all visited:!text-white">
               Free Estimate
             </a>
           </div>
@@ -132,7 +132,7 @@ export default function App() {
               className="flex flex-col gap-8"
             >
               <div className="flex flex-col gap-4">
-                <span className="bg-accent/20 text-accent font-bold px-3 py-1 rounded text-sm uppercase tracking-wider w-fit">
+                <span className="bg-accent/20 text-white font-bold px-3 py-1 rounded text-sm uppercase tracking-wider w-fit ring-1 ring-white/20">
                   Local Painting Experts
                 </span>
                 <h1 className="text-4xl md:text-6xl font-black leading-tight tracking-tight">
@@ -143,7 +143,7 @@ export default function App() {
                 </p>
               </div>
               <div className="flex flex-wrap gap-4">
-                <a href="tel:3609102546" className="bg-accent text-slate-900 px-8 py-4 rounded-lg text-lg font-black shadow-xl hover:scale-105 transition-transform flex items-center gap-3">
+                <a href="tel:3609102546" className="bg-accent !text-white px-8 py-4 rounded-lg text-lg font-black shadow-xl hover:scale-105 transition-transform flex items-center gap-3 visited:!text-white [&_svg]:text-white">
                   <Phone className="w-6 h-6" />
                   Call (360) 910-2546
                 </a>
@@ -388,7 +388,7 @@ export default function App() {
                   <label className="text-sm font-bold text-slate-300 uppercase tracking-widest pl-1">Project Details</label>
                   <textarea placeholder="Tell us about your project..." rows={3} className="w-full rounded-xl bg-white/5 border border-white/10 text-white px-6 py-5 focus:ring-2 focus:ring-accent outline-none focus:bg-white/10 transition-all font-medium resize-none" />
                 </div>
-                <button className="w-full h-16 rounded-xl bg-accent text-slate-900 text-lg font-black shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all mt-4 group">
+                <button className="w-full h-16 rounded-xl bg-accent !text-white text-lg font-black shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all mt-4 group [&_svg]:text-white">
                   Get My Free Estimate <ArrowRight className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <div className="flex items-center justify-center gap-2 text-slate-500">
@@ -406,22 +406,22 @@ export default function App() {
                 </p>
                 <div className="flex flex-col gap-8">
                   <div className="flex items-center gap-6 group">
-                    <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-accent group-hover:text-slate-900 transition-all duration-300 shadow-lg">
+                    <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-lg">
                       <Phone className="w-6 h-6" />
                     </div>
-                    <a href="tel:3609102546" className="group-hover:text-accent transition-colors">
+                    <a href="tel:3609102546" className="text-white visited:text-white transition-colors">
                       <p className="text-sm font-bold opacity-60 uppercase tracking-widest">Call Directly</p>
                       <p className="text-2xl font-black tracking-tight">(360) 910-2546</p>
                     </a>
                   </div>
                   <div className="flex items-center gap-6 group">
-                    <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-accent group-hover:text-slate-900 transition-all duration-300 shadow-lg">
+                    <div className="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all duration-300 shadow-lg">
                       <Mail className="w-6 h-6" />
                     </div>
                     <div>
                       <p className="text-sm font-bold opacity-60 uppercase tracking-widest">Email Us</p>
-                      <a href="mailto:info@triplea.com" className="text-2xl font-black tracking-tight hover:text-accent transition-colors block">
-                        info@triplea.com
+                      <a href="mailto:tripleapainting@yahoo.com" className="text-2xl font-black tracking-tight text-white visited:text-white hover:text-white/90 transition-colors block break-all">
+                        tripleapainting@yahoo.com
                       </a>
                     </div>
                   </div>
@@ -496,7 +496,7 @@ export default function App() {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               href="tel:3609102546" 
-              className="bg-accent text-slate-900 w-20 h-20 rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform border-4 border-slate-900 relative z-10"
+              className="bg-accent !text-white w-20 h-20 rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform border-4 border-white relative z-10 visited:!text-white [&_svg]:text-white"
             >
               <Phone className="w-10 h-10" />
             </motion.a>
@@ -512,10 +512,10 @@ export default function App() {
               Bringing color and care to PNW homes and families since 2005. Your home, treated like our own.
             </p>
             <div className="flex gap-4">
-              <a href="tel:3609102546" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-accent hover:text-slate-900 transition-all shadow-lg" aria-label="Call Triple A Painting">
+              <a href="tel:3609102546" className="w-12 h-12 rounded-xl bg-white/5 text-white flex items-center justify-center hover:bg-accent hover:!text-white transition-all shadow-lg visited:text-white" aria-label="Call Triple A Painting">
                 <Phone className="w-6 h-6" />
               </a>
-              <a href="mailto:info@triplea.com" className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-accent hover:text-slate-900 transition-all shadow-lg" aria-label="Email Triple A Painting">
+              <a href="mailto:tripleapainting@yahoo.com" className="w-12 h-12 rounded-xl bg-white/5 text-white flex items-center justify-center hover:bg-accent hover:!text-white transition-all shadow-lg visited:text-white" aria-label="Email Triple A Painting">
                 <Mail className="w-6 h-6" />
               </a>
             </div>

@@ -8,7 +8,7 @@ const __dirname = dirname(__filename);
 const app = express();
 const port = process.env.PORT || 8080;
 
-const staticDir = join(__dirname, 'tripleapainting');
+const staticDir = join(__dirname, 'dist');
 
 app.use(express.static(staticDir));
 

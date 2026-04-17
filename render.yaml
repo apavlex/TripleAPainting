@@ -1,7 +1,7 @@
-# Vite outDir is ./tripleapainting (same as typical Render publish folder for this project).
+# Build uses npm so postbuild copies ./dist → ./tripleapainting. Publish may be ./dist or ./tripleapainting.
 services:
   - type: web
     name: TripleAPainting
     runtime: static
     buildCommand: npm ci && npm run build
-    staticPublishPath: ./tripleapainting
+    staticPublishPath: ./dist

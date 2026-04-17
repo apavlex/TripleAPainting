@@ -87,42 +87,6 @@ function SeoJsonLd() {
 }
 
 export default function App() {
-  const [projectDetails, setProjectDetails] = React.useState('');
-  const [coachLoading, setCoachLoading] = React.useState(false);
-  const [coachReply, setCoachReply] = React.useState<string | null>(null);
-  const [coachError, setCoachError] = React.useState<string | null>(null);
-
-  async function requestProjectCoach() {
-    const text = projectDetails.trim();
-    if (!text) {
-      setCoachError('Add a few details about your project first.');
-      return;
-    }
-    setCoachLoading(true);
-    setCoachError(null);
-    setCoachReply(null);
-    try {
-      const res = await fetch('/api/project-coach', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({projectDetails: text}),
-      });
-      const data = (await res.json()) as {error?: string; reply?: string};
-      if (!res.ok) {
-        throw new Error(data.error || 'Something went wrong. Please try again.');
-      }
-      if (data.reply) {
-        setCoachReply(data.reply);
-      } else {
-        setCoachError('No suggestions returned. Try again.');
-      }
-    } catch (e) {
-      setCoachError(e instanceof Error ? e.message : 'Network error. Try again.');
-    } finally {
-      setCoachLoading(false);
-    }
-  }
-
   return (
     <div className="min-h-screen flex flex-col font-sans">
       <SeoJsonLd />
@@ -422,37 +386,7 @@ export default function App() {
                 </div>
                 <div className="flex flex-col gap-2">
                   <label className="text-sm font-bold text-slate-300 uppercase tracking-widest pl-1">Project Details</label>
-                  <textarea
-                    value={projectDetails}
-                    onChange={(e) => {
-                      setProjectDetails(e.target.value);
-                      setCoachReply(null);
-                      setCoachError(null);
-                    }}
-                    placeholder="Tell us about your project..."
-                    rows={3}
-                    className="w-full rounded-xl bg-white/5 border border-white/10 text-white px-6 py-5 focus:ring-2 focus:ring-accent outline-none focus:bg-white/10 transition-all font-medium resize-none"
-                  />
-                </div>
-                <div className="flex flex-col gap-3">
-                  <button
-                    type="button"
-                    onClick={() => void requestProjectCoach()}
-                    disabled={coachLoading}
-                    className="w-full h-12 rounded-xl bg-white/10 border border-white/15 text-white text-sm font-bold hover:bg-white/15 transition-all disabled:opacity-50 disabled:pointer-events-none"
-                  >
-                    {coachLoading ? 'Getting tips…' : 'Get AI prep tips for my project'}
-                  </button>
-                  {coachError && (
-                    <p className="text-amber-200/90 text-sm font-medium" role="alert">
-                      {coachError}
-                    </p>
-                  )}
-                  {coachReply && (
-                    <div className="rounded-xl bg-white/5 border border-white/10 px-5 py-4 text-slate-200 text-sm leading-relaxed whitespace-pre-wrap">
-                      {coachReply}
-                    </div>
-                  )}
+                  <textarea placeholder="Tell us about your project..." rows={3} className="w-full rounded-xl bg-white/5 border border-white/10 text-white px-6 py-5 focus:ring-2 focus:ring-accent outline-none focus:bg-white/10 transition-all font-medium resize-none" />
                 </div>
                 <button className="w-full h-16 rounded-xl bg-accent !text-white text-lg font-black shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all mt-4 group [&_svg]:text-white">
                   Get My Free Estimate <ArrowRight className="inline-block ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
